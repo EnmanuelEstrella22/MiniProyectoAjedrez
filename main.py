@@ -1,5 +1,6 @@
-from fichas import *
+from piece import *
 
+# clase de iniciar el juego
 class Play(Piece):
     cont = 0
     tablero = Piece().Piece_Board(Piece().Empty_Board())

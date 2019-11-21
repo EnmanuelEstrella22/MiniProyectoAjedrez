@@ -3,6 +3,7 @@ from board import *
 # metodos de la reina y el peon
 class Piece(Chessboard):
 
+    #metodo para establecer las reglas y los movimientos del peon
     def Peon(self,posActual,AdondeVa,tablero,ColorFicha,ColorFichaEne,num1,num2,num3):
         fiA = self.fila.index(posActual[0])
         coA = self.columna.index(posActual[1])
@@ -24,22 +25,24 @@ class Piece(Chessboard):
                 if self.cicloRecorrido(posActual,AdondeVa,ColorFichaEne,tablero):
                     return [self.Piece_Move(tablero,posActual,AdondeVa),""]      
             else: 
-                print("Movimiento invalido1")
+                print("Movimiento invalido")
         else:#validar que se mueva solo un paso a delante si ya salio de su posicion
             if num1 != 6: #Si no es ficha blanca
                 if self.fila.index(AdondeVa[0]) > self.fila.index(posActual[0]) and self.fila.index(AdondeVa[0]) - self.fila.index(posActual[0]) == 1 and  tablero[self.fila.index(AdondeVa[0])] [self.columna.index(AdondeVa[1])] not in ColorFichaEne:       
                     if self.ValidarFichas(posActual,AdondeVa,tablero,ColorFicha):
                         return [self.Piece_Move(tablero,posActual,AdondeVa),""]
                 else: 
-                    print("Movimiento invalido2")
+                    print("Movimiento invalido")
             else: 
                 if self.fila.index(AdondeVa[0]) < self.fila.index(posActual[0]) and abs(self.fila.index(AdondeVa[0]) - self.fila.index(posActual[0])) == 1 and  tablero[self.fila.index(AdondeVa[0])] [self.columna.index(AdondeVa[1])] not in ColorFichaEne:       
                     if self.ValidarFichas(posActual,AdondeVa,tablero,ColorFicha):
                         return [self.Piece_Move(tablero,posActual,AdondeVa),""]
                 else: 
-                    print("Movimiento invalido2")   
+                    print("Movimiento invalido")   
         return False 
 
+
+    #metodo para establecer las reglas y los movimientos de la reina
     def Reina(self,posActual,AdondeVa,tablero,ColorFicha,ColoFichaE):
 
         fiA = self.fila.index(posActual[0])

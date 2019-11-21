@@ -6,7 +6,6 @@ class Utilities():
             9632), chr(9633), chr(9632), chr(9633), chr(9632)]
         self.Limp = [chr(9632), chr(9633), chr(9632), chr(
             9633), chr(9632), chr(9633), chr(9632), chr(9633)]
-        # self.num = [' ','a','b','c','d','e','f','g','h']
         self.Tablero = []
         self.FBlack = ['', chr(9819), chr(9823)]
         self.FWhite = ['', chr(9813), chr(9817)]
@@ -14,13 +13,13 @@ class Utilities():
         self.fila = [8, 7, 6, 5, 4, 3, 2, 1, 0]
 
         
-
+    #metodo par
     def par(self, n):
         if n % 2 == 0:
             return True
         return False
 
-
+    # imprimir tablero
     def Print_Board(self,t,LB,LW):
 
         print()
@@ -66,7 +65,6 @@ class Utilities():
 # recorriendo coordenadas por donde pasara la ficha
     def cicloRecorrido(self,f1,f2,colorF,tablero):
         filaAct  = self.fila.index(f1[0])
-        columnaAct =self.columna.index(f1[1])
         filaDest= self.fila.index(f2[0])
         columnaDest =self.columna.index(f2[1])
         for items in range(int(filaDest),int(filaAct)):
@@ -78,7 +76,6 @@ class Utilities():
     #Validar movimiento de la reina en diagonal secundaria
     def ValidarReinaDiagonalSecundaria(self,f1,f2,colorF,tablero):
         filaAct  = self.fila.index(f1[0])
-        columnaAct =self.columna.index(f1[1])
         filaDest= self.fila.index(f2[0])
         columnaDest =self.columna.index(f2[1])
         contC = columnaDest
@@ -100,7 +97,6 @@ class Utilities():
     #Validar movimiento de la reina en diagonal principal
     def ValidarReinaDiagonalPrincipal(self,f1,f2,colorF,tablero):
         filaAct  = self.fila.index(f1[0])
-        columnaAct =self.columna.index(f1[1])
         filaDest= self.fila.index(f2[0])
         columnaDest =self.columna.index(f2[1])
         contC = columnaDest
@@ -122,7 +118,6 @@ class Utilities():
     #Validar movimiento de la reina en vertical
     def ValidarReinaVertical(self,f1,f2,colorF,tablero):
         filaAct  = self.fila.index(f1[0])
-        columnaAct =self.columna.index(f1[1])
         filaDest= self.fila.index(f2[0])
         columnaDest =self.columna.index(f2[1])
         if filaDest < filaAct:#para que tambien valide al moverse para atras
@@ -141,8 +136,6 @@ class Utilities():
     #Validar movimiento de la reina en orizontal
     def ValidarReinaOrizontal(self,f1,f2,colorF,tablero):
         filaAct  = self.fila.index(f1[0])
-        columnaAct =self.columna.index(f1[1])
-        filaDest= self.fila.index(f2[0])
         columnaDest =self.columna.index(f2[1])
         if filaAct < columnaDest:#para que tambien valide al moverse para atras
             for f in range(int(filaAct+1),int(columnaDest+1)):
