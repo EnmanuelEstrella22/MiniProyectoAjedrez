@@ -1,89 +1,106 @@
 from piece import *
 
-# clase de iniciar el juego
+# class start the game which inherits from the piece class
+
+# the 2 players must enter their name and each one must select
+# the piece of their color they want to move and then indicate where they want to move it
+
+# a cycle is generated until waiting for the game to end, when only one piece of a color remains
+# that will be the player who won the game
+
 class Play(Piece):
     cont = 0
-    tablero = Piece().Piece_Board(Piece().Empty_Board())
-    colum =['','a','b','c','d','e','f','g','h']
-    fil =[8,7,6,5,4,3,2,1,0]
-    jugador1 = input("Introduzca nombre del jugador 1: ")
-    jugador2 = input("Introduzca nombre del jugador 2: ")
+    board = Piece().Piece_Board(Piece().Empty_Board())
+    column =['','a','b','c','d','e','f','g','h']
+    row =[8,7,6,5,4,3,2,1,0]
+    player1 = input("Enter player name 1: ")
+    player2 = input("Enter player name 2: ")
     lb = []
     lw = []
-    Piece().Print_Board(tablero,lb,lw)
+    Piece().Print_Board(board,lb,lw)
 
-    while True:
+    end = Piece().Play_End(board)
+    while end == False :
+        end = Piece().Play_End(board)
+        if end:
+            if (cont+1) % 2 == 0:
+                print("Winner White pieces")
+                print("player: "+player1)
+                break
+            else:
+                print("Winner Black pieces")
+                print("player: "+player2)    
+                break
         try:
             if cont % 2 == 0:
-                print("Turno: "+jugador1)
-                print("Fichas: Blancas")
+                print("Turn: "+player1)
+                print("Piece: White")
             else:
-                print("Turno: "+jugador2)
-                print("Fichas: Negras")
-            a1 =input("Seleccionar ficha: ")
-            a2 =input("Movimiento: ")    
-            columna=a1[0]
-            fila1=int(a1[1])
-            columna1=a2[0]
-            fila2=int(a2[1])
-            pos=[fila1,columna]
-            pos1=[fila2,columna1]
-            tab1 = tablero
+                print("Turn: "+player2)
+                print("Piece: Black")
+            PosAct =input("Select piece: ")
+            PosDest =input("Movement: ")    
+            columnAct=PosAct[0]
+            RowAct=int(PosAct[1])
+            columnDest=PosDest[0]
+            RowDest=int(PosDest[1])
+            PosActP=[RowAct,columnAct]
+            PosDestP=[RowDest,columnDest]
+            boardTemp = board
             if cont % 2 == 0:
-                #PARA FICHAS BLANCAS
-                
-                if tablero[fil.index(pos[0])] [colum.index(pos[1])] == chr(9817):
+                #if the turn is of the white piece
+                if board[row.index(PosActP[0])] [column.index(PosActP[1])] == chr(9817):
 
-                    tablero =  Piece().Peon(pos,pos1,tablero,Piece().FWhite,Piece().FBlack,6,9,13)
-                    if tablero != False:
+                    board =  Piece().Pawn(PosActP,PosDestP,board,Piece().FWhite,Piece().FBlack,6,9,13)
+                    if board != False:
                         cont += 1
-                        if tablero[1] != "":
-                            lw.append(tablero[1])
-                        tablero = tablero[0]    
+                        if board[1] != "":
+                            lw.append(board[1])
+                        board = board[0]    
                     else:
-                        tablero = tab1  
+                        board = boardTemp  
 
-                elif  tablero[fil.index(pos[0])] [colum.index(pos[1])] == chr(9813):
+                elif  board[row.index(PosActP[0])] [column.index(PosActP[1])] == chr(9813):
                 
-                    tablero = Piece().Reina(pos,pos1,tablero,Piece().FWhite,Piece().FBlack)
-                    if tablero != False:
+                    board = Piece().Queen(PosActP,PosDestP,board,Piece().FWhite,Piece().FBlack)
+                    if board != False:
                         cont += 1
-                        if tablero[1] != "":
-                            lw.append(tablero[1])
-                        tablero = tablero[0]  
+                        if board[1] != "":
+                            lw.append(board[1])
+                        board = board[0]  
                     else:
-                        tablero = tab1 
+                        board = boardTemp 
                 else:
-                    print("No es una ficha blanca")  
+                    print("It is not a white piece")  
             else:   
-                #PARA FICHAS NEGRAS
+                #if the turn is of the Black piece
                 
-                if tablero[fil.index(pos[0])] [colum.index(pos[1])] == chr(9823):
+                if board[row.index(PosActP[0])] [column.index(PosActP[1])] == chr(9823):
 
-                    tablero =  Piece().Peon(pos,pos1,tablero,Piece().FWhite,Piece().FBlack,1,1,5)
-                    if tablero != False:
+                    board =  Piece().Pawn(PosActP,PosDestP,board,Piece().FBlack,Piece().FWhite,1,1,5)
+                    if board != False:
                         cont += 1
-                        if tablero[1] != "":
-                            lb.append(tablero[1])
-                        tablero = tablero[0]  
+                        if board[1] != "":
+                            lb.append(board[1])
+                        board = board[0]  
                     else:
-                        tablero = tab1 
-                elif  tablero[fil.index(pos[0])] [colum.index(pos[1])] == chr(9819):
-
-                    tablero = Piece().Reina(pos,pos1,tablero,Piece().FBlack,Piece().FWhite)
-                    if tablero != False:
+                        board = boardTemp 
+                elif  board[row.index(PosActP[0])] [column.index(PosActP[1])] == chr(9819):
+                    board = Piece().Queen(PosActP,PosDestP,board,Piece().FBlack,Piece().FWhite)
+                    if board != False:
                         cont += 1
-                        if tablero[1] != "":
-                            lb.append(tablero[1])
-                        tablero = tablero[0]  
+                        if board[1] != "":
+                            lb.append(board[1])
+                        board = board[0]  
                     else:
-                        tablero = tab1 
+                        board = boardTemp 
                 else:
-                    print("No es una ficha Negra")    
+                    print("It is not a Black piece")    
 
-            Piece().Print_Board(tablero,lb,lw)
-        except (ValueError,IndexError):print("Coordenada incorrecta. Intente nuevamente...")     
+            Piece().Print_Board(board,lb,lw)
+        except (ValueError,IndexError):print("Incorrect coordinate. Try again...")     
 
 
+# play class call
 Play()
 
