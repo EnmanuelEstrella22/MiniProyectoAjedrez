@@ -26,6 +26,7 @@ class Chessboard(Utilities):
 
     # assigning the pieces to the board
     def Piece_Board(self, t):
+        # return borad
         for f in range(0, 9):
             for c in range(0, 9):
                 if f < 2 and c > 0:
