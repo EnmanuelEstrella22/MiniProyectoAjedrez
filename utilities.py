@@ -104,7 +104,7 @@ class Utilities():
                     print("can't fly piece of your team")
                     return False
 
-                if f != rowDest+1 and  board[f][contAct] in ColorPieceEne:
+                if f != rowDest and  board[f][contAct] in ColorPieceEne:
                     print("can't fly piece of your team contrary")
                     return False 
                 contAct -= 1
@@ -175,7 +175,7 @@ class Utilities():
                     print("can't fly piece of your team")
                     return False
 
-                if f != rowDest+1 and  board[f][contAct] in ColorPieceEne:
+                if f != rowDest and  board[f][contAct] in ColorPieceEne:
                     print("can't fly piece of your team contrary")
                     return False    
                 contAct += 1
@@ -225,7 +225,6 @@ class Utilities():
 
         if rowDest < rowAct:# so that it also validates when moving backwards
             for f in range(int(rowDest),int(rowAct)):
-                print(f,columnDest,board[f][columnDest])
                 if board[f][columnDest] in ColorPiece:
                     print("can't fly piece of your team")
                     return False
@@ -236,12 +235,11 @@ class Utilities():
             return True 
         else:
             for f in range(int(rowAct+1),int(rowDest+1)):
-                print(f,columnDest,board[f][columnDest])
                 if board[f][columnDest] in ColorPiece:
                     print("can't fly piece of your team")
                     return False
 
-                if f!= rowDest+1 and board[f][columnDest] in ColorPieceEne:
+                if f!= rowDest and board[f][columnDest] in ColorPieceEne:
                     print("can't fly piece of your team contrary")
                     return False    
             return True
@@ -258,7 +256,7 @@ class Utilities():
                     print("can't fly piece of your team")
                     return False
 
-                if f!= columnDest+1 and board[rowAct][f] in ColorPieceEne:
+                if f!= columnDest and board[rowAct][f] in ColorPieceEne:
                     print("can't fly piece of your team contrary")
                     return False       
             return True  
